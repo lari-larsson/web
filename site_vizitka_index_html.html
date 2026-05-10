@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Алексей Иванов — преподаватель английского</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      color: #1f2937;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.16), transparent 36%),
+        #f8fafc;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      color: white;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .nav-links a:hover {
+      color: #4f46e5;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      padding: 76px 0 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(79, 70, 229, 0.18);
+      border-radius: 999px;
+      color: #4338ca;
+      background: rgba(79, 70, 229, 0.08);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      color: #0f172a;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin-top: 24px;
+      color: #475569;
+      font-size: 19px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 16px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      box-shadow: 0 18px 34px rgba(79, 70, 229, 0.26);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 42px rgba(79, 70, 229, 0.34);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(148, 163, 184, 0.42);
+      background: rgba(255, 255, 255, 0.8);
+      color: #334155;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      border-color: rgba(79, 70, 229, 0.35);
+    }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -80px auto auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.24), rgba(14, 165, 233, 0.2));
+    }
+
+    .avatar {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 310px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(79, 70, 229, 0.86)),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    .avatar strong {
+      display: block;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .avatar span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 700;
+    }
+
+    .stats {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 20px;
+      background: #f8fafc;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .stat b {
+      display: block;
+      color: #0f172a;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    .section-title h2 {
+      color: #0f172a;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .section-title p {
+      margin-top: 12px;
+      color: #64748b;
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: rgba(79, 70, 229, 0.1);
+      color: #4f46e5;
+      font-size: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #0f172a;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-box {
+      padding: 32px;
+      border-radius: 32px;
+      background: #0f172a;
+      color: white;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+    }
+
+    .about-box h2 {
+      font-size: 38px;
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .about-box p {
+      margin-top: 18px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .check {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: white;
+      background: #22c55e;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .list-item b {
+      color: #0f172a;
+    }
+
+    .list-item p {
+      margin-top: 3px;
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    .contact {
+      padding: 36px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      color: white;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(79, 70, 229, 0.26);
+    }
+
+    .contact h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .contact p {
+      max-width: 640px;
+      margin: 16px auto 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 18px;
+    }
+
+    .contact .btn {
+      margin-top: 26px;
+      background: white;
+      color: #3730a3;
+    }
+
+    footer {
+      padding: 30px 0 46px;
+      color: #64748b;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .hero,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .nav,
+      .profile-card,
+      .about-box,
+      .contact {
+        border-radius: 24px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar {
+        height: 250px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <span class="logo-mark">A</span>
+        <span>Alex English</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#about">Подход</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Онлайн-уроки английского • 7+ лет опыта</div>
+        <h1>Английский без хаоса, зубрёжки и стыда.</h1>
+        <p>
+          Помогаю взрослым, подросткам и детям говорить увереннее, подтянуть грамматику
+          и подготовиться к экзаменам понятным человеческим языком.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Записаться на пробный урок</a>
+          <a class="btn btn-secondary" href="#services">Посмотреть программы</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="avatar">
+          <div>
+            <strong>C1+</strong>
+            <span>IELTS / Speaking / Exams</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <b>7+</b>
+            <span>лет опыта</span>
+          </div>
+          <div class="stat">
+            <b>90+</b>
+            <span>баллы ЕГЭ</span>
+          </div>
+          <div class="stat">
+            <b>1:1</b>
+            <span>личный план</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="services">
+      <div class="section-title">
+        <h2>Что можно прокачать</h2>
+        <p>Выбираем не «учебник ради учебника», а конкретную цель: говорить, сдать экзамен или наконец понять систему языка.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">💬</div>
+          <h3>Разговорный английский</h3>
+          <p>Убираем страх говорить, собираем активный словарь и тренируем живые фразы для реальных ситуаций.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>Подготовка к экзаменам</h3>
+          <p>ЕГЭ, ОГЭ, IELTS и TOEFL: стратегия, формат, тайминг, типичные ошибки и регулярная практика.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧠</div>
+          <h3>Грамматика без боли</h3>
+          <p>Объясняю сложные темы простыми словами: времена, условные, пассив, артикли, предлоги и порядок слов.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-box">
+        <h2>Мой подход — спокойно, ясно и по делу.</h2>
+        <p>
+          На уроках не нужно изображать идеального ученика. Можно ошибаться, переспрашивать
+          и разбирать одну тему столько, сколько нужно, пока она реально не станет понятной.
+        </p>
+      </div>
+
+      <div class="list">
+        <div class="list-item">
+          <span class="check">✓</span>
+          <div>
+            <b>Понятные объяснения</b>
+            <p>Без академического тумана: правило, примеры, практика и сразу применение в речи.</p>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <span class="check">✓</span>
+          <div>
+            <b>Персональная программа</b>
+            <p>Темп и материалы подстраиваются под уровень, цель, дедлайн и слабые места ученика.</p>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <span class="check">✓</span>
+          <div>
+            <b>Практика с первого урока</b>
+            <p>Много говорим, пишем, слушаем и разбираем ошибки без давления и унижения.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <h2>Хочешь наконец почувствовать прогресс?</h2>
+        <p>
+          Напиши мне, и мы подберём формат занятий под твою цель: разговорный английский,
+          экзамен, работа, переезд или уверенное общение.
+        </p>
+        <a class="btn" href="https://t.me/your_username" target="_blank">Написать в Telegram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    © 2026 Alex English. Онлайн-уроки английского языка.
+  </footer>
+</body>
+</html>
